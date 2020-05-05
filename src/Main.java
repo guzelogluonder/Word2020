@@ -1,6 +1,10 @@
 import javax.swing.*;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -73,13 +77,12 @@ public class Main {
                 writer.takeCommand(saveFileCommand);
                 writer.executeCommand();
                 JOptionPane saveNews = new JOptionPane();
-                saveNews.showMessageDialog(myFrame,"Dosyanız projenin altına kaydedildi");
+                saveNews.showMessageDialog(myFrame, "Dosyanız projenin altına kaydedildi");
             }
         });
         myMenu.share.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
 
 
             }
@@ -96,16 +99,39 @@ public class Main {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_K) {
+                if (e.getKeyCode() == KeyEvent.VK_K && e.isControlDown()) {
                     e.consume();
-                    BoldCommand boldCmd = new BoldCommand(page);
+
+                    int start = page.getSelectionStart();
+                    int end = page.getSelectionEnd();
+                    if (start == end) { // No selection, cursor position.
+                        return;
+                    }
+                    if (start > end) { // Backwards selection?
+                        int life = start;
+                        start = end;
+                        end = life;
+                    }
+                    BoldCommand boldCmd = new BoldCommand(page, start, end);
                     writer.takeCommand(boldCmd);
                     writer.executeCommand();
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_E) {
+                if (e.getKeyCode() == KeyEvent.VK_E && e.isControlDown()) {
                     e.consume();
-                    ItalicCommand ItalicCmd = new ItalicCommand(page);
+
+                    int start = page.getSelectionStart();
+                    int end = page.getSelectionEnd();
+                    if (start == end) { // No selection, cursor position.
+                        return;
+                    }
+                    if (start > end) { // Backwards selection?
+                        int life = start;
+                        start = end;
+                        end = life;
+                    }
+
+                    ItalicCommand ItalicCmd = new ItalicCommand(page, start, end);
                     writer.takeCommand(ItalicCmd);
                     writer.executeCommand();
                 }
