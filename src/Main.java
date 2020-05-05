@@ -89,6 +89,16 @@ public class Main {
 
             }
         });
+        myMenu.undo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewPage currentPage = (NewPage) myTab.getSelectedComponent();
+                UndoCommand undo = new UndoCommand(currentPage);
+                writer.takeCommand(undo);
+                writer.executeCommand();
+
+            }
+        });
 
 
     }

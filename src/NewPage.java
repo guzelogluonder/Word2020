@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.*;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,9 +14,12 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class NewPage extends JTextPane {
+    UndoManager manager = new UndoManager();
 
     public NewPage() {
-        //this.setText(text);
+        this.setFont(new Font("Serif", Font.PLAIN, 24));
+        this.setBackground(Color.WHITE);
+        this.getDocument().addUndoableEditListener(manager);
     }
 
     public void makeBold(int startChar, int endChar) {
@@ -49,6 +53,10 @@ public class NewPage extends JTextPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void undoPage(){
+        this.manager.undo();
     }
 }
 

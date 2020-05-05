@@ -8,13 +8,15 @@ public class Menu extends JMenuBar {
     JMenuItem save = new JMenuItem("Dosya Kaydet");
     JMenuItem newFile = new JMenuItem("Yeni Dosya");
     JMenuItem share = new JMenuItem("Dosyayı Paylaş");
-
+    JButton undo = new JButton("Geri Al");
     public Menu() {
 
-        menu.add(save);
-        menu.add(open);
         menu.add(newFile);
+        menu.add(open);
+        menu.add(save);
         menu.add(share);
         this.add(menu);
+        this.add(undo);
+
     }
 }
