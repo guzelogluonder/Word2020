@@ -17,6 +17,8 @@ public class Main {
         addPageKeyListener(firstPage, writer);
         NewTab myTab = new NewTab(firstPage);
         WordFrame myFrame = new WordFrame(myTab);
+        ImageIcon word = new ImageIcon("images/word.png");
+        myFrame.setIconImage(word.getImage());
         Menu myMenu = new Menu();
         /*Menu BAR addition*/
         myFrame.setJMenuBar(myMenu);
