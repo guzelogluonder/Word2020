@@ -8,7 +8,6 @@ public class BoldCommand implements Command {
     @Override
     public void execute() {
         myPage.makeBold();
-        myPage.openNewTab();
-        myPage.makeItalic();
+
     }
 }

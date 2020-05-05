@@ -1,4 +1,13 @@
-package PACKAGE_NAME;
+public class SaveFileCommand implements Command {
 
-public class SaveFileCommand {
+    private NewPage newPage;
+
+    public SaveFileCommand(NewPage newPage) {
+        this.newPage = newPage;
+    }
+
+    @Override
+    public void execute() {
+        newPage.writeText(newPage.getText());
+    }
 }

@@ -1,13 +1,14 @@
 public class OpenNewTabCommand implements Command {
+    private NewPage myNewPage;
+    private NewTab myTab;
 
-    private NewPage myPage;
-
-    public OpenNewTabCommand(NewPage page) {
-        this.myPage = page;
+    public OpenNewTabCommand(NewTab newTab, NewPage newPage) {
+        this.myNewPage = newPage;
+        this.myTab = newTab;
     }
 
     @Override
     public void execute() {
-        myPage.openNewTab();
+        myTab.openNewTab(myNewPage);
     }
 }
