@@ -1,14 +1,13 @@
-public class BoldCommand implements Command {
+public class ItalicCommand implements Command {
     private NewPage myPage;
 
-    public BoldCommand(NewPage page) {
+    public ItalicCommand(NewPage page) {
+
         this.myPage = page;
     }
 
     @Override
     public void execute() {
-        myPage.makeBold();
-        myPage.openNewTab();
         myPage.makeItalic();
     }
 }
